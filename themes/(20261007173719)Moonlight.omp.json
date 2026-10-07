@@ -11,10 +11,6 @@
     "git_commits_behind": "p:terminal_lightblue",
     "main_background": "#141726",
     "secondary_background": "#1C2033",
-    "subpill_error": "#53394F",
-    "subpill_main": "#2F3656",
-    "subpill_secondary": "#343D5F",
-    "subpill_tertiary": "#3B446A",
     "terminal_blue": "#7386D0",
     "terminal_bluegray": "#B9C6F5",
     "terminal_brightgray": "#EEEEFA",
@@ -96,7 +92,7 @@
           "foreground": "p:terminal_lightblue",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "<p:subpill_secondary>\ue0b6</><p:terminal_blue,p:subpill_secondary>\ue235</><p:subpill_secondary>\ue0b4</> {{ .Full }}{{ if .WSL }} {{ base (dir (dir (dir (stat .Executable)))) }}{{ end }}{{ if .Venv }} <p:subpill_secondary>\ue0b6</><p:terminal_blue,p:subpill_secondary>{{ .Venv }}</><p:subpill_secondary>\ue0b4</>{{ end }}",
+          "template": "\ue235 {{ .Full }}{{ if .Venv }} ({{ .Venv }}){{ end }}{{ if .WSL }} {{ base (dir (dir (dir (stat .Executable)))) }}{{ end }}",
           "options": {
             "cache_duration": "none",
             "fetch_version": true,
@@ -114,7 +110,7 @@
           "trailing_diamond": "\ue0b4",
           "max_width": 109,
           "templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) (and (gt .Ahead 0) (gt .Behind 0)) (gt .Ahead 0) (gt .Behind 0) }}<p:subpill_secondary>\ue0b6</>{{ if or (.Working.Changed) (.Staging.Changed) }}<p:git_changes_pending,p:subpill_secondary>{{.Var.git_changes_pending}}</>{{ end }}{{ if and (gt .Ahead 0) (gt .Behind 0) }}<p:git_branch_divergence,p:subpill_secondary>{{.Var.git_branch_divergence}}</>{{ end }}{{ if gt .Ahead 0 }}<p:git_commits_ahead,p:subpill_secondary>{{.Var.git_commits_ahead}}</>{{ end }}{{ if gt .Behind 0 }}<p:git_commits_behind,p:subpill_secondary>{{.Var.git_commits_behind}}</>{{ end }}<p:subpill_secondary>\ue0b4</>{{ end }}",
+            "{{ if or (.Working.Changed) (.Staging.Changed) (and (gt .Ahead 0) (gt .Behind 0)) (gt .Ahead 0) (gt .Behind 0) }}[{{ if or (.Working.Changed) (.Staging.Changed) }}<p:git_changes_pending>{{.Var.git_changes_pending}}</>{{ end }}{{ if and (gt .Ahead 0) (gt .Behind 0) }}<p:git_branch_divergence>{{.Var.git_branch_divergence}}</>{{ end }}{{ if gt .Ahead 0 }}<p:git_commits_ahead>{{.Var.git_commits_ahead}}</>{{ end }}{{ if gt .Behind 0 }}<p:git_commits_behind>{{.Var.git_commits_behind}}</>{{ end }}]{{ end }}",
             " {{ url .HEAD .UpstreamURL }}"
           ],
           "options": {
@@ -141,7 +137,7 @@
           "foreground": "p:terminal_lightgray",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "<p:subpill_main>\ue0b6</><p:terminal_blue,p:subpill_main>\uf252</><p:subpill_main>\ue0b4</> {{ .FormattedMs }}",
+          "template": "{{ .FormattedMs }}",
           "options": {
             "style": "austin",
             "threshold": 200
@@ -154,7 +150,7 @@
           "foreground": "p:terminal_bluegray",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "{{ if ne .Code 0 }}<p:subpill_error>\ue0b6</><p:terminal_error,p:subpill_error>\uf00d</><p:subpill_error>\ue0b4</> {{ reason .Code }}{{ end }}"
+          "template": "{{ if ne .Code 0 }}\uf00d {{ reason .Code }}{{ end }}"
         }
       ]
     },
@@ -169,7 +165,7 @@
           "background": "p:main_background",
           "foreground": "p:os_color",
           "leading_diamond": "\ue0b6",
-          "template": "<p:subpill_main>\ue0b6</><p:os_color,p:subpill_main>{{ if .Root }}<i>{{ url .Icon .Var.github }}</i>{{ else }}{{ url .Icon .Var.github }}{{ end }}</><p:subpill_main>\ue0b4</> ",
+          "template": "{{ if .Root }}<i>{{ url .Icon .Var.github }}</i>{{ else }}{{ url .Icon .Var.github }}{{ end }} ",
           "options": {
             "macos": "\ue711",
             "ubuntu": "\uf31b",
@@ -192,11 +188,10 @@
           "style": "diamond",
           "background": "p:secondary_background",
           "foreground": "p:terminal_blue",
-          "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
           "min_width": 110,
           "templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) (and (gt .Ahead 0) (gt .Behind 0)) (gt .Ahead 0) (gt .Behind 0) }}<p:subpill_secondary>\ue0b6</>{{ if or (.Working.Changed) (.Staging.Changed) }}<p:git_changes_pending,p:subpill_secondary>{{.Var.git_changes_pending}}</>{{ end }}{{ if and (gt .Ahead 0) (gt .Behind 0) }}<p:git_branch_divergence,p:subpill_secondary>{{.Var.git_branch_divergence}}</>{{ end }}{{ if gt .Ahead 0 }}<p:git_commits_ahead,p:subpill_secondary>{{.Var.git_commits_ahead}}</>{{ end }}{{ if gt .Behind 0 }}<p:git_commits_behind,p:subpill_secondary>{{.Var.git_commits_behind}}</>{{ end }}<p:subpill_secondary>\ue0b4</>{{ end }}",
+            "{{ if or (.Working.Changed) (.Staging.Changed) (and (gt .Ahead 0) (gt .Behind 0)) (gt .Ahead 0) (gt .Behind 0) }}[{{ if or (.Working.Changed) (.Staging.Changed) }}<p:git_changes_pending>{{.Var.git_changes_pending}}</>{{ end }}{{ if and (gt .Ahead 0) (gt .Behind 0) }}<p:git_branch_divergence>{{.Var.git_branch_divergence}}</>{{ end }}{{ if gt .Ahead 0 }}<p:git_commits_ahead>{{.Var.git_commits_ahead}}</>{{ end }}{{ if gt .Behind 0 }}<p:git_commits_behind>{{.Var.git_commits_behind}}</>{{ end }}]{{ end }}",
             " {{ url .HEAD .UpstreamURL }}"
           ],
           "options": {
@@ -222,14 +217,13 @@
           "background": "p:tertiary_background",
           "foreground": "p:terminal_bluegray",
           "trailing_diamond": "\ue0b4",
-          "leading_diamond": "\ue0b6",
-          "template": "<p:subpill_tertiary>\ue0b6</><p:terminal_blue,p:subpill_tertiary>{{ url \"\udb82\ude1e\" (print \"vscode://file/\" (replace \"\\\\\" \"/\" .Location) \"?windowId=_blank\") }}</><p:subpill_tertiary>\ue0b4</> {{ path .Path .Location }} ",
+          "template": " {{ path .Path .Location }} ",
           "options": {
             "folder_icon": "\ue5ff",
             "home_icon": "\uf4e2",
             "max_depth": 2,
             "style": "agnoster_short",
-            "folder_separator_icon": " \uf054 ",
+            "folder_separator_icon": "  ",
             "hide_root_location": true,
             "cycle": [ "p:terminal_brightgray", "p:terminal_bluegray" ],
             "cycle_folder_separator": true,
