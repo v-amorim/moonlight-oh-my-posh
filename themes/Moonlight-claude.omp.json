@@ -127,7 +127,7 @@
           "foreground": "p:terminal_gray",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "template": "{{ if ne .Env.CLAUDE_MOD_MODEL_EFFORT \"true\" }}<p:subpill_main>\ue0b6</><p:terminal_blue,p:subpill_main>\ue28b</><p:subpill_main>\ue0b4</> {{ .Model.DisplayName }}{{ if .FastMode }} \uf0e7{{ end }}{{ if .Effort }}{{ if eq .Effort.Level \"low\" }} \u25cb{{ else if eq .Effort.Level \"medium\" }} \u25d0{{ else if eq .Effort.Level \"high\" }} \u25cf{{ else if eq .Effort.Level \"xhigh\" }} \u25c9{{ else if eq .Effort.Level \"max\" }} \u25c8{{ else if eq .Effort.Level \"ultracode\" }} \u2726{{ else if eq .Effort.Level \"auto\" }} \u25cc{{ end }}{{ end }} {{ end }}"
+          "template": "{{ if ne .Env.CLAUDE_MOD_MODEL_EFFORT \"true\" }}<p:subpill_main>\ue0b6</><p:terminal_blue,p:subpill_main>\ue28b</><p:subpill_main>\ue0b4</> {{ .Model.DisplayName }}{{ if .FastMode }} \uf0e7{{ end }}{{ if .Effort }}{{ if eq .Effort.Level \"low\" }} <#ACB9E6>\u25cb</>{{ else if eq .Effort.Level \"medium\" }} <#CDBBE5>\u25d0</>{{ else if eq .Effort.Level \"high\" }} <#EA98EE>\u25cf</>{{ else if eq .Effort.Level \"xhigh\" }} <#F883C9>\u25c9</>{{ else if eq .Effort.Level \"max\" }} <#FF6F7A>\u25c8</>{{ else if eq .Effort.Level \"ultracode\" }} \u2726{{ else if eq .Effort.Level \"auto\" }} \u25cc{{ end }}{{ end }} {{ end }}"
         }
       ]
     },
